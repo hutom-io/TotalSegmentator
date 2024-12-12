@@ -209,25 +209,26 @@ def send_usage_stats(config, params):
         license_number = get_license_number()
 
         try:
-            st = time.time()
-            url = "http://backend.totalsegmentator.com:80/"
-            r = requests.post(url + "log_totalseg_run",
-                              json={"totalseg_id": config["totalseg_id"],
-                                    "prediction_counter": config["prediction_counter"],
-                                    "task": params["task"],
-                                    "fast": params["fast"],
-                                    "preview": params["preview"],
-                                    "multilabel": params["multilabel"],
-                                    "roi_subset": params["roi_subset"],
-                                    "statistics": params["statistics"],
-                                    "radiomics": params["radiomics"],
-                                    "platform": platform.system(),
-                                    "machine": platform.machine(),
-                                    "version": get_version(),
-                                    "python_version": sys.version,
-                                    "cuda_available": torch.cuda.is_available(),
-                                    "license_number": license_number
-                                    }, timeout=5)
+            pass
+            # st = time.time()
+            # url = "http://backend.totalsegmentator.com:80/"
+            # r = requests.post(url + "log_totalseg_run",
+            #                   json={"totalseg_id": config["totalseg_id"],
+            #                         "prediction_counter": config["prediction_counter"],
+            #                         "task": params["task"],
+            #                         "fast": params["fast"],
+            #                         "preview": params["preview"],
+            #                         "multilabel": params["multilabel"],
+            #                         "roi_subset": params["roi_subset"],
+            #                         "statistics": params["statistics"],
+            #                         "radiomics": params["radiomics"],
+            #                         "platform": platform.system(),
+            #                         "machine": platform.machine(),
+            #                         "version": get_version(),
+            #                         "python_version": sys.version,
+            #                         "cuda_available": torch.cuda.is_available(),
+            #                         "license_number": license_number
+            #                         }, timeout=5)
             # if r.ok:
             #     print(f"status: {r.json()['status']}")
             # else:
