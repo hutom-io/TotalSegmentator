@@ -17,7 +17,7 @@ setup(name='TotalSegmentator',
              "resources/modality_classifiers_2024_10_04.pkl"]
             },
         install_requires=[
-            'torch>=2.1.2',
+            'torch==2.1.2',
             'numpy<2',
             'SimpleITK',
             'nibabel>=2.3.0',

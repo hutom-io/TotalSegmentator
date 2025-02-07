@@ -1,5 +1,5 @@
 # ** is any number of nested directories
-# **/*.model
+# **/*.models
 # db/models/*
 # db/test_data/*
 # db/log.txt
