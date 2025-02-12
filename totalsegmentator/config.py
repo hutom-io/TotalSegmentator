@@ -255,24 +255,24 @@ def send_usage_stats_application(application_name):
     config = get_config()
     if config is not None and config["send_usage_stats"]:
 
-        try:
-            st = time.time()
-            url = "http://backend.totalsegmentator.com:80/"
-            r = requests.post(url + "log_totalseg_application_run",
-                              json={"totalseg_id": config["totalseg_id"],
-                                    "application": application_name,
-                                    "platform": platform.system(),
-                                    "machine": platform.machine(),
-                                    "version": get_version(),
-                                    "python_version": sys.version,
-                                    "cuda_available": torch.cuda.is_available()
-                                    }, timeout=5)
+        # try:
+        st = time.time()
+        url = "http://backend.totalsegmentator.com:80/"
+        r = requests.post(url + "log_totalseg_application_run",
+                            json={"totalseg_id": config["totalseg_id"],
+                                "application": application_name,
+                                "platform": platform.system(),
+                                "machine": platform.machine(),
+                                "version": get_version(),
+                                "python_version": sys.version,
+                                "cuda_available": torch.cuda.is_available()
+                                }, timeout=5)
             # if r.ok:
             #     print(f"status: {r.json()['status']}")
             # else:
             #     print(f"status code: {r.status_code}")
             #     print(f"message: {r.json()['message']}")
             # print(f"Request took {time.time()-st:.3f}s")
-        except Exception as e:
+        # except Exception as e:
             # print(f"An Exception occurred: {e}")
-            pass
+            # pass
