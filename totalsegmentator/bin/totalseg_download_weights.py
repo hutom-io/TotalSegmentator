@@ -21,13 +21,15 @@ def main():
                                                  "lung_vessels", "cerebral_bleed",
                                                  "hip_implant", "coronary_arteries", "pleural_pericard_effusion",
                                                  "body", "body_fast", "body_mr", "body_mr_fast", "vertebrae_mr",
-                                                 "vertebrae_discs",
+                                                 "vertebrae_body",
                                                  "heartchambers_highres", "appendicular_bones", 
-                                                 "tissue_types", "tissue_types_mr", "face", "face_mr",
+                                                 "tissue_types", "tissue_types_mr", "tissue_4_types", "face", "face_mr",
                                                  "head_glands_cavities", "head_muscles", "headneck_bones_vessels",
                                                  "headneck_muscles", "liver_vessels", "brain_structures",
-                                                 "lung_nodules", "kidney_cysts", "breasts",
-                                                 "thigh_shoulder_muscles", "thigh_shoulder_muscles_mr"],
+                                                 "lung_nodules", "kidney_cysts", "breasts", "ventricle_parts",
+                                                 "thigh_shoulder_muscles", "thigh_shoulder_muscles_mr", 
+                                                #  "aortic_sinuses", 
+                                                 "all"],
                         help="Task for which to download the weights", default="total")
 
     args = parser.parse_args()
@@ -40,7 +42,6 @@ def main():
         "lung_vessels": [258],
         "cerebral_bleed": [150],
         "hip_implant": [260],
-        "coronary_arteries": [503],
         "pleural_pericard_effusion": [315],
         "body": [299],
         "body_fast": [300],
@@ -54,26 +55,45 @@ def main():
         "liver_vessels": [8],
         "lung_nodules": [913],
         "kidney_cysts": [789],
+        "oculomotor_muscles": [351],
         "breasts": [527],
+        "ventricle_parts": [552],
 
         "heartchambers_highres": [301],
         "appendicular_bones": [304],
+        "appendicular_bones_mr": [855],
         "tissue_types": [481],
         "tissue_types_mr": [854],
-        "vertebrae_discs": [305],
+        "tissue_4_types": [485],
+        "vertebrae_body": [305],
         "face": [303],
         "face_mr": [856],
         "brain_structures": [409],
-        "thigh_shoulder_muscles": [999],  # TODO
-        "thigh_shoulder_muscles_mr": [857]
+        "thigh_shoulder_muscles": [857],
+        "thigh_shoulder_muscles_mr": [857],
+        "coronary_arteries": [507],
+        # "aortic_sinuses": [920]
     }
 
     setup_totalseg()
     set_config_key("statistics_disclaimer_shown", True)
 
-    for task_id in task_to_id[args.task]:
-        print(f"Processing {task_id}...")
-        download_pretrained_weights(task_id)
+    if args.task == "all":
+        # Get unique task IDs from all tasks
+        all_task_ids = set()
+        for task_ids in task_to_id.values():
+            if isinstance(task_ids, list):
+                all_task_ids.update(task_ids)
+            else:
+                all_task_ids.add(task_ids)
+        
+        for task_id in sorted(all_task_ids):
+            print(f"Processing {task_id}...")
+            download_pretrained_weights(task_id)
+    else:
+        for task_id in task_to_id[args.task]:
+            print(f"Processing {task_id}...")
+            download_pretrained_weights(task_id)
 
 
 if __name__ == "__main__":

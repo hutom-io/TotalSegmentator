@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='TotalSegmentator',
-        version='2.4.0',
+        version='2.6.0',
         description='Robust segmentation of 104 classes in CT images.',
         long_description="See Readme.md on github for more details.",
         url='https://github.com/wasserth/TotalSegmentator',
@@ -14,10 +14,11 @@ setup(name='TotalSegmentator',
         package_data={"totalsegmentator": 
             ["resources/totalsegmentator_snomed_mapping.csv",
              "resources/contrast_phase_classifiers_2024_07_19.pkl",
-             "resources/modality_classifiers_2024_10_04.pkl"]
+             "resources/modality_classifiers_2024_10_04.pkl",
+             "resources/ct_brain_atlas_1mm.nii.gz"]
             },
         install_requires=[
-            'torch==2.1.2',
+            'torch>=2.1.2,<2.6.0',  # <2.6.0 can be removed when using new nnunet version with this change: https://github.com/MIC-DKFZ/nnUNet/pull/2683
             'numpy<2',
             'SimpleITK',
             'nibabel>=2.3.0',
@@ -47,7 +48,8 @@ setup(name='TotalSegmentator',
                 'totalseg_setup_manually=totalsegmentator.bin.totalseg_setup_manually:main',
                 'totalseg_set_license=totalsegmentator.bin.totalseg_set_license:main',
                 'totalseg_get_phase=totalsegmentator.bin.totalseg_get_phase:main',
-                'totalseg_get_modality=totalsegmentator.bin.totalseg_get_modality:main'
+                'totalseg_get_modality=totalsegmentator.bin.totalseg_get_modality:main',
+                'totalseg_evans_index=totalsegmentator.bin.totalseg_evans_index:main'
             ],
         },
     )

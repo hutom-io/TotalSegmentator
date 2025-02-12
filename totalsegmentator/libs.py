@@ -16,7 +16,7 @@ import numpy as np
 import nibabel as nib
 
 from totalsegmentator.map_to_binary import class_map, class_map_5_parts, commercial_models
-from totalsegmentator.config import get_totalseg_dir, get_weights_dir, is_valid_license, has_valid_license, has_valid_license_offline
+from totalsegmentator.config import get_totalseg_dir, get_weights_dir, is_valid_license, has_valid_license, has_valid_license_offline, get_version
 
 """
 Helpers to suppress stdout prints from nnunet
@@ -57,7 +57,8 @@ def download_model_with_license_and_unpack(task_name, config_dir):
         st = time.time()
         r = requests.post(url + "download_weights",
                           json={"license_number": license_number,
-                                "task": task_name},
+                                "task": task_name,
+                                "version": get_version()},
                           timeout=300,
                           stream=True)
         r.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
@@ -237,6 +238,9 @@ def download_pretrained_weights(task_id):
     elif task_id == 527:
         weights_path = config_dir / "Dataset527_breasts_1559subj"
         WEIGHTS_URL = url + "/v2.5.0-weights/Dataset527_breasts_1559subj.zip"
+    elif task_id == 552:
+        weights_path = config_dir / "Dataset552_ventricle_parts_38subj"
+        WEIGHTS_URL = url + "/v2.5.0-weights/Dataset552_ventricle_parts_38subj.zip"
                 
     # MR models
     elif task_id == 850:
@@ -291,11 +295,6 @@ def download_pretrained_weights(task_id):
         # WEIGHTS_URL = "https://zenodo.org/record/7510288/files/Task315_thoraxCT.zip?download=1"
         # WEIGHTS_URL = url + "/static/totalseg_v2/Dataset315_thoraxCT.zip"
         WEIGHTS_URL = url + "/v2.0.0-weights/Dataset315_thoraxCT.zip"
-    elif task_id == 503:
-        weights_path = config_dir / "Dataset503_cardiac_motion"
-        # WEIGHTS_URL = "https://zenodo.org/record/7271576/files/Task503_cardiac_motion.zip?download=1"
-        # WEIGHTS_URL = url + "/static/totalseg_v2/Dataset503_cardiac_motion.zip"
-        WEIGHTS_URL = url + "/v2.0.0-weights/Dataset503_cardiac_motion.zip"
     elif task_id == 8:
         weights_path = config_dir / "Dataset008_HepaticVessel"
         WEIGHTS_URL = url + "/v2.4.0-weights/Dataset008_HepaticVessel.zip"
@@ -314,6 +313,8 @@ def download_pretrained_weights(task_id):
         weights_path = config_dir / "Dataset303_face_1559subj"
     elif task_id == 481:
         weights_path = config_dir / "Dataset481_tissue_1559subj"
+    elif task_id == 485:
+        weights_path = config_dir / "Dataset485_tissue_4types_1559subj"
     elif task_id == 305:
         weights_path = config_dir / "Dataset305_vertebrae_discs_1559subj"
     elif task_id == 854:
@@ -322,10 +323,12 @@ def download_pretrained_weights(task_id):
         weights_path = config_dir / "Dataset856_TotalSegMRI_face_1088subj"
     elif task_id == 409:
         weights_path = config_dir / "Dataset409_neuro_550subj"
-    elif task_id == 999:
-        weights_path = config_dir / "TODO"
     elif task_id == 857:
         weights_path = config_dir / "Dataset857_TotalSegMRI_thigh_shoulder_1088subj"
+    elif task_id == 507:
+        weights_path = config_dir / "Dataset507_coronary_arteries_cm_nativ_400subj"
+    elif task_id == 920:
+        weights_path = config_dir / "Dataset920_aortic_sinuses_cm_nativ_400subj"
 
     else:
         raise ValueError(f"For task_id {task_id} no download path was found.")

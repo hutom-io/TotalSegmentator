@@ -216,15 +216,6 @@ def totalsegmentator(input: Union[str, Path, Nifti1Image], output: Union[str, Pa
         model = "3d_fullres"
         folds = [0]
         if fast: raise ValueError("task hip_implant does not work with option --fast")
-    elif task == "coronary_arteries":
-        task_id = 503
-        resample = None
-        trainer = "nnUNetTrainer"
-        crop = ["heart"]
-        model = "3d_fullres"
-        folds = [0]
-        print("WARNING: The coronary artery model does not work very robustly. Use with care!")
-        if fast: raise ValueError("task coronary_arteries does not work with option --fast")
     elif task == "body":
         if fast:
             task_id = 300
@@ -359,17 +350,26 @@ def totalsegmentator(input: Union[str, Path, Nifti1Image], output: Union[str, Pa
         model = "3d_fullres"
         folds = [0]
         if fast: raise ValueError("task breasts does not work with option --fast")
+    elif task == "ventricle_parts":
+        task_id = 552
+        resample = [1.0, 0.4345703125, 0.4384765625]
+        trainer = "nnUNetTrainerNoMirroring"
+        crop = ["brain"]
+        crop_addon = [0, 0, 0]
+        model = "3d_fullres"
+        folds = [0]
+        if fast: raise ValueError("task ventricle_parts does not work with option --fast")
 
         
     # Commercial models
-    elif task == "vertebrae_discs":
+    elif task == "vertebrae_body":
         task_id = 305
         resample = 1.5
         trainer = "nnUNetTrainer_DASegOrd0"
         crop = None
         model = "3d_fullres"
         folds = [0]
-        if fast: raise ValueError("task vertebrae_discs does not work with option --fast")
+        if fast: raise ValueError("task vertebrae_body does not work with option --fast")
         show_license_info()
     elif task == "heartchambers_highres":
         task_id = 301
@@ -417,6 +417,15 @@ def totalsegmentator(input: Union[str, Path, Nifti1Image], output: Union[str, Pa
         folds = [0]
         if fast: raise ValueError("task tissue_types_mr does not work with option --fast")
         show_license_info()
+    elif task == "tissue_4_types":
+        task_id = 485
+        resample = 1.5
+        trainer = "nnUNetTrainer"
+        crop = None
+        model = "3d_fullres"
+        folds = [0]
+        if fast: raise ValueError("task tissue_4_types does not work with option --fast")
+        show_license_info()
     elif task == "face":
         task_id = 303
         resample = 1.5
@@ -446,7 +455,7 @@ def totalsegmentator(input: Union[str, Path, Nifti1Image], output: Union[str, Pa
         if fast: raise ValueError("task brain_structures does not work with option --fast")
         show_license_info()
     elif task == "thigh_shoulder_muscles":
-        task_id = 999  # TODO
+        task_id = 857  # at the moment only one mixed model for CT and MR; when annotated all CT samples -> train separate CT model
         resample = 1.5
         trainer = "nnUNetTrainer_2000epochs_NoMirroring"
         crop = None
@@ -461,7 +470,27 @@ def totalsegmentator(input: Union[str, Path, Nifti1Image], output: Union[str, Pa
         crop = None
         model = "3d_fullres"
         folds = [0]
-        if fast: raise ValueError("task thigh_shoulder_muscles does not work with option --fast")
+        if fast: raise ValueError("task thigh_shoulder_muscles_mr does not work with option --fast")
+        show_license_info()
+    elif task == "coronary_arteries":
+        task_id = 507
+        resample = [0.7, 0.7, 0.7]
+        trainer = "nnUNetTrainer_DASegOrd0_NoMirroring"
+        crop = ["heart"]
+        crop_addon = [20, 20, 20]
+        model = "3d_fullres_high"
+        folds = [0]
+        if fast: raise ValueError("task coronary_arteries does not work with option --fast")
+        show_license_info()
+    elif task == "aortic_sinuses":
+        task_id = 920
+        resample = [0.7, 0.7, 0.7]
+        trainer = "nnUNetTrainer_DASegOrd0_NoMirroring"
+        crop = ["heart"]
+        crop_addon = [0, 0, 0]
+        model = "3d_fullres_high"
+        folds = [0]
+        if fast: raise ValueError("task aortic_sinuses does not work with option --fast")
         show_license_info()
 
     elif task == "test":

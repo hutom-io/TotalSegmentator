@@ -364,7 +364,7 @@ class_map = {
         1: "liver_vessels",
         2: "liver_tumor"
     },
-    "vertebrae_discs": {
+    "vertebrae_body": {
         1: "vertebrae_body",
         2: "intervertebral_discs"
     },
@@ -419,6 +419,12 @@ class_map = {
         1: "subcutaneous_fat",
         2: "torso_fat",
         3: "skeletal_muscle"
+    },
+    "tissue_4_types": {
+        1: "subcutaneous_fat",
+        2: "torso_fat",
+        3: "skeletal_muscle",
+        4: "intermuscular_fat"
     },
     "face": {
         1: "face"
@@ -579,6 +585,26 @@ class_map = {
     "breasts": {
         1: "breast"
     },
+    "ventricle_parts": {
+        1: "ventricle_frontal_horn_left",
+        2: "ventricle_occipital_horn_left", 
+        3: "ventricle_body_left",
+        4: "ventricle_temporal_horn_left",
+        5: "ventricle_trigone_left",
+        6: "ventricle_frontal_horn_right",
+        7: "ventricle_occipital_horn_right",
+        8: "ventricle_body_right", 
+        9: "ventricle_temporal_horn_right",
+        10: "ventricle_trigone_right",
+        11: "third_ventricle",
+        12: "fourth_ventricle"
+    },
+    "aortic_sinuses": {
+        1: "left_ventricular_outflow_tract",
+        2: "right_coronary_cusp", 
+        3: "left_coronary_cusp",
+        4: "non_coronary_cusp"
+    },
     "test": {
         1: "carpal"
     }
@@ -591,12 +617,15 @@ commercial_models = {
     "appendicular_bones_mr": 855,
     "tissue_types": 481,
     "tissue_types_mr": 854,
-    "vertebrae_discs": 305,
+    "tissue_4_types": 485,
+    "vertebrae_body": 305,
     "face": 303,
     "face_mr": 856,
     "brain_structures": 409,
-    "thigh_shoulder_muscles": 999,  # todo
-    "thigh_shoulder_muscles_mr": 857
+    "thigh_shoulder_muscles": 857,
+    "thigh_shoulder_muscles_mr": 857,
+    "coronary_arteries": 507,
+    "aortic_sinuses": 920
 }
 
 

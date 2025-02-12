@@ -108,7 +108,7 @@ roi_groups = {
     "liver_vessels": [
         ["liver_vessels", "liver_tumor"]
     ],
-    "vertebrae_discs": [
+    "vertebrae_body": [
         ["vertebrae_body", "intervertebral_discs"]
     ],
     "heartchambers_highres": [
@@ -134,6 +134,12 @@ roi_groups = {
         ["subcutaneous_fat"],
         ["torso_fat"],
         ["skeletal_muscle"]
+    ],
+    "tissue_4_types": [
+        ["subcutaneous_fat"],
+        ["torso_fat"],
+        ["skeletal_muscle"],
+        ["intermuscular_fat"]
     ],
     "face": [
         ["face"]
@@ -212,6 +218,15 @@ roi_groups = {
     ],
     "breasts": [
         ["breast"]
+    ],
+    "ventricle_parts": [
+        ["ventricle_frontal_horn_left", "ventricle_occipital_horn_left", "ventricle_body_left",
+        "ventricle_temporal_horn_left", "ventricle_trigone_left", "ventricle_frontal_horn_right",
+        "ventricle_occipital_horn_right", "ventricle_body_right", "ventricle_temporal_horn_right",
+        "ventricle_trigone_right", "third_ventricle", "fourth_ventricle"]
+    ],
+    "aortic_sinuses": [
+        ["left_ventricular_outflow_tract", "right_coronary_cusp", "left_coronary_cusp", "non_coronary_cusp"]
     ],
     "test": [
         ["ulna"]
